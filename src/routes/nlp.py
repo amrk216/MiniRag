@@ -153,7 +153,7 @@ async def search_index(request:Request,project_id:str,search_request:SearchReque
 
 
 @nlp_router.post("/index/answer/{project_id}")
-async def search_index(request:Request,project_id:str,search_request:SearchRequest):
+async def answer_rag(request:Request,project_id:str,search_request:SearchRequest):
     
     project_model = await ProjectModel.create_instance(
         db_client=request.app.db_client
@@ -176,6 +176,7 @@ async def search_index(request:Request,project_id:str,search_request:SearchReque
         limit=search_request.limit
 
     )
+    
     print(f"answer :{answer}\nfull_prompt :{full_prompt}\nchat_history :{chat_history}")
 
     if not answer:
