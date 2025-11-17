@@ -1,6 +1,8 @@
 from abc import ABC, abstractmethod
 from typing import List
 
+from models.db_schemes.DataChunk import RetrievedDocument
+
 
 class vectordbInterface(ABC):
     
@@ -62,6 +64,6 @@ class vectordbInterface(ABC):
     def search_by_vector(self,
                          collection_name:str,
                          vector:list,
-                         limit:int=5,
-                         ):
+                         limit:int,
+                         )-> List[RetrievedDocument]:
         pass
