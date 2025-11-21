@@ -37,7 +37,7 @@ async def index_project(request:Request,project_id: str,push_request:PushRequest
     nlp_controller = NLPController(
         vectordb_client=request.app.vectordb_client,
         generation_client= request.app.generation_client,
-        embedding_client=request.app.embedding_client
+        embedding_client=request.app.embedding_client,
     )
     has_records = True
     page_no = 1
@@ -94,7 +94,8 @@ async def get_project_index_info(request:Request,project_id:str):
     nlp_controller = NLPController(
         vectordb_client=request.app.vectordb_client,
         generation_client= request.app.generation_client,
-        embedding_client=request.app.embedding_client
+        embedding_client=request.app.embedding_client,
+        
     )
 
     collection_info = nlp_controller.get_vector_db_collection_info(
@@ -170,7 +171,7 @@ async def answer_rag(request:Request,project_id:str,search_request:SearchRequest
         templateparser=request.app.templateparser
     )
 
-    answer,full_prompt,chat_history= nlp_controller.answer_rag_guestion(
+    answer,full_prompt,chat_history= nlp_controller.answer_rag_question(
         project=project,
         query=search_request.text,
         limit=search_request.limit
