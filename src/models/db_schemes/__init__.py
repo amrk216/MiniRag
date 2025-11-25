@@ -1,3 +1,3 @@
 from .project import Project
-from .DataChunk import DataChunk
+from .data_chunk import DataChunk, RetrievedDocument
 from .asset import Asset

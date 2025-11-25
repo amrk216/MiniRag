@@ -26,3 +26,7 @@ class DataChunk(BaseModel):
                 "unique": False  #? It is false because I have more than one chunk that takes up the project_id
             }
         ]
+    
+class RetrievedDocument(BaseModel):
+    text: str
+    score: float

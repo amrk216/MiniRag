@@ -9,13 +9,13 @@ from stores.llm.LLMinterface import LLMInterface
 class CoHereProvider(LLMInterface):
     def __init__(self,api_key:str,
                       default_input_max_characters:int=1000,
-                        default_generation_max_tokens:int=1000,
+                        default_generation_max_output_tokens:int=1000,
                         default_generation_temperature:float=0.1):
         
         self.api_key = api_key
 
         self.default_input_max_characters = default_input_max_characters
-        self.default_generation_max_tokens = default_generation_max_tokens
+        self.default_generation_max_output_tokens = default_generation_max_output_tokens
         self.default_generation_temperature = default_generation_temperature
 
         self.generation_model_id = None
@@ -26,7 +26,9 @@ class CoHereProvider(LLMInterface):
         self.client = cohere.Client(
             api_key=self.api_key)
         
+        self.enums = CoHereEnum
         self.logger = logging.getLogger(__name__)
+
 
     def set_generation_model(self, model_id:str):
             self.generation_model_id = model_id
@@ -48,7 +50,7 @@ class CoHereProvider(LLMInterface):
             self.logger.error("Generation model is not set.")
             return None
         
-        max_output_tokens = max_output_tokens if max_output_tokens  else self.default_generation_max_tokens
+        max_output_tokens = max_output_tokens if max_output_tokens  else self.default_generation_max_output_tokens
         temperature = temperature if temperature  else self.default_generation_temperature
         
         response = self.client.chat(
