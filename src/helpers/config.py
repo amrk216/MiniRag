@@ -8,8 +8,11 @@ class Settings(BaseSettings):
     FILE_MAX_SIZE: int
     FILE_DEFAULT_CHUNK_SIZE: int
 
-    MONGODB_URL: str
-    MONGODB_DATABASE: str
+    POSTGERS_USERNAME: str
+    POSTGERS_PASSWORD: str
+    POSTGERS_HOST: str
+    POSTGERS_PORT: int
+    POSTGERS_MAIN_DATABASE: str
 
     GENERATION_BACKEND: str
     EMBEDDING_BACKEND: str
