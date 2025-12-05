@@ -1,11 +1,11 @@
-from .minirag_base import sqlalchemyBase
+from .minirag_base import SQLAlchemyBase
 from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, Text, func
 import uuid
 from sqlalchemy.dialects.postgresql import UUID ,JSONB
 from sqlalchemy.orm import relationship
 from sqlalchemy import Index
 
-class Asset(sqlalchemyBase):
+class Asset(SQLAlchemyBase):
 
     __tablename__  = "assets"
 
@@ -23,6 +23,7 @@ class Asset(sqlalchemyBase):
     updated_at = Column(DateTime(timezone=True),onupdate=func.now(),nullable=True)
 
     project = relationship('Project',back_populates='assets')
+    chunks = relationship('DataChunk',back_populates='asset')
     __table_args__ = (
         Index('ix_asset_project_id',asset_project_id),
         Index('ix_asset_asset_type',asset_type)

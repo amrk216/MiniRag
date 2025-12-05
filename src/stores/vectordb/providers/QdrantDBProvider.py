@@ -129,25 +129,27 @@ class QdrantDBProvider(vectordbInterface):
                 self.logger.error(f"Error inserting batch starting at index {i}: {e}")
                 return False
         return True
+          
+         
     
     def search_by_vector(self,
                          collection_name:str,
                          vector:list,
                          limit:int=5,
                          ):
-        results = self.client.search(
-            collection_name=collection_name,
-            query_vector=vector,
-            limit=limit
-        )
+        results = self.client.query_points(
+        collection_name=collection_name,
+        query=vector,
+        limit=limit,
+)
 
-        if not results or len(results) ==0:
+        if results is None or not results.points:
             return None
-        
+
         return [
             RetrievedDocument(**{
-                "score": result.score,
-                "text": result.payload["text"],
+                "score": point.score,
+                "text": point.payload["text"],
             })
-            for result in results
+            for point in results.points
         ]

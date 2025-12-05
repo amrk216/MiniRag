@@ -1,12 +1,11 @@
-from .minirag_base import sqlalchemyBase
-from pydantic import BaseModel
+from .minirag_base import SQLAlchemyBase
 from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, Text, func
 import uuid
 from sqlalchemy.dialects.postgresql import UUID ,JSONB
 from sqlalchemy.orm import relationship
 from sqlalchemy import Index
 
-class DataCunk(sqlalchemyBase):
+class DataChunk(SQLAlchemyBase):
 
     __tablename__ = "chunks"
 
@@ -30,6 +29,8 @@ class DataCunk(sqlalchemyBase):
         Index('ix_chunk_project_id',chunk_project_id),
         Index('ix_chunk_asset_id',chunk_asset_id)
     )
+
+from pydantic import BaseModel
 
 class RetrievedDocument(BaseModel):
     text: str

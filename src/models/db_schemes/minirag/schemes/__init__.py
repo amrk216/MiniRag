@@ -1,5 +1,5 @@
-from .minirag_base import sqlalchemyBase
+from .minirag_base import SQLAlchemyBase
 from .asset import Asset
-from .datachunk import DataCunk,RetrievedDocument
+from .datachunk import DataChunk, RetrievedDocument
 from .project import Project
  

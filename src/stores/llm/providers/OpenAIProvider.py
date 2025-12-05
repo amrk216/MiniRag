@@ -1,6 +1,7 @@
 
+from stores.llm.LLMEnums import OpenAIEnum
 from stores.llm.LLMinterface import LLMInterface
-from ..LLMEnums import OpenAIEnum
+
 from openai import OpenAI
 import logging
 
@@ -97,7 +98,7 @@ class OpenAIProvider(LLMInterface):
     def construct_prompt(self, prompt: str, role: str):
         return {
             "role": role,
-            "content": self.process_text(prompt)
+            "content": prompt,
         }
     
 
