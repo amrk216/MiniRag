@@ -45,7 +45,7 @@ class vectordbInterface(ABC):
                    collection_name:str,
                    text:str,
                    vector:list,
-                   metadate:dict=None,
+                   metadata:dict=None,
                    record_id:str = None
                    ):
         pass
