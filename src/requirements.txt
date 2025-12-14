@@ -4,7 +4,8 @@ python-multipart==0.0.20
 python-dotenv==1.2.1
 pydantic-settings==2.12.0
 aiofiles==25.1.0
-langchain==1.1.0
+langchain==1.1.3
+langchain-community==0.4.1
 PyMuPDF==1.26.6
 motor==3.7.1
 pydantic-mongo==3.1.0
@@ -14,7 +15,13 @@ qdrant-client==1.16.1
 SQLAlchemy==2.0.44
 asyncpg==0.31.0
 alembic==1.17.2
-#psycopg2==2.9.11
+psycopg2-binary==2.9.11
 httpx==0.27.2
 pgvector==0.4.2
 nltk==3.9.2
+# mointoring and metrics
+prometheus-client==0.23.1
+starlette-exporter==0.23.0
+
+# Helth checks
+fastapi-health==0.4.0
