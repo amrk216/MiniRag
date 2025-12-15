@@ -1,0 +1,38 @@
+APP_NAME = "mini-rag"
+APP_VERSION = "0.1"
+
+FILE_ALLOWED_EXTNSIONS = ["text/plain", "application/pdf"]
+FILE_MAX_SIZE = 10
+FILE_DEFAULT_CHUNK_SIZE = 512000
+
+POSTGERS_USERNAME = "postgres"
+POSTGERS_PASSWORD = "postgres_password"  
+POSTGERS_HOST = "localhost"
+POSTGERS_PORT = 5432
+POSTGERS_MAIN_DATABASE= "minirag"
+
+GENERATION_BACKEND = "OPENAI"
+EMBEDDING_BACKEND = "COHERE"
+
+OPENAI_API_KEY = ""
+OPENAI_API_URL='url/v1'
+COHERE_API_KEY = ""
+# ========================= LLM Config ============================
+GENERATION_MODEL_ID_LITERAL=["gemma3:270m-it-fp16","gemma3:1.3b-it-fp16","gemma3:6.7b-it-fp16"]
+GENERATION_MODEL_ID="gemma3:270m-it-fp16"
+EMBEDDING_MODEL_ID="embed-multilingual-v3.0"
+EMBEDDING_MODEL_SIZE = 1024
+
+INPUT_DAFAULT_MAX_CHARACTERS = 1024
+GENERATION_DAFAULT_MAX_TOKENS = 200
+GENERATION_DAFAULT_TEMPERATURE = 0.1
+
+# ========================= Vector DB Config ============================
+VECTOR_DB_BACKEND_LITERAL = ["PGVECTOR","QDRANT"]
+VECTOR_DB_BACKEND = "PGVECTOR"
+VECTOR_DB_PATH = 'qdarant_db'
+VECTOR_DB_DISTANCE_METHOD = "cosine"
+VECTOR_DB_PGVEC_INDEX_THRESHOLD = 100
+# ========================= Template Configs ============================
+PRIMARY_LANG = "en"
+DEFAULT_LANG = "en"

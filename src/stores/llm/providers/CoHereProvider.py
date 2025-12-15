@@ -1,10 +1,8 @@
 import logging
-
-
 import cohere
-
 from stores.llm.LLMEnums import CoHereEnum, DocumentType
 from stores.llm.LLMinterface import LLMInterface
+from typing import List ,Union
 
 class CoHereProvider(LLMInterface):
     def __init__(self,api_key:str,
@@ -65,10 +63,12 @@ class CoHereProvider(LLMInterface):
             return None
         return response.text
     
-    def embed_text(self, text:str,document_type:str = None):
+    def embed_text(self, text:Union[str,List[str]],document_type:str = None):
         if not self.client:
             self.logger.error("OpenAI client is not initialized.")
             return None
+        if isinstance(text, str):
+            text = [text]
          
         if not self.embedding_model_id:
             self.logger.error("Embedding model is not set.")
@@ -78,19 +78,20 @@ class CoHereProvider(LLMInterface):
             input_type = CoHereEnum.QUERY
         response = self.client.embed(
             model = self.embedding_model_id,
-            texts = [self.process_text(text)],
+            texts = [self.process_text(t) for t in text],
             input_type = input_type,
             embedding_types = ['float']
         )
         if not response or not response.embeddings or not response.embeddings.float:
             self.logger.error("No embedding received from Cohere API.")
             return None
-        return response.embeddings.float[0]
+        
+        return [f for f in response.embeddings.float]
 
 
     def construct_prompt(self, prompt:str, role:str):
         return{
             "role": role,
-            "text": self.process_text(prompt)
+            "text": prompt
         }
 
